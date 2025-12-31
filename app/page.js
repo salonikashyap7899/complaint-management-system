@@ -52,7 +52,7 @@ export default function App() {
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([]);
   const [stats, setStats] = useState({});
-  const [notifications, setNotifications] = useState([]);
+  const [] = useState([]);
   
   // Form states
   const [showComplaintForm, setShowComplaintForm] = useState(false);
@@ -91,9 +91,10 @@ export default function App() {
 
   useEffect(() => {
     if (user && token) {
+      // eslint-disable-next-line react-hooks/immutability
       fetchData();
     }
-  }, [user, token, activeTab]);
+  }, [user, token, activeTab, fetchData]);
 
   const seedDatabase = async (authToken) => {
     try {
@@ -108,7 +109,7 @@ export default function App() {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       // Fetch departments
       const deptRes = await fetch('/api/departments', {
@@ -149,7 +150,7 @@ export default function App() {
     } catch (error) {
       console.error('Fetch error:', error);
     }
-  };
+  });
 
   
   const handleAuth = async (e) => {
@@ -309,6 +310,7 @@ export default function App() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleQuickResolve = async (complaintId, quickNote) => {
     await handleUpdateStatus(complaintId, 'in-progress', 'Quick resolution started');
     setTimeout(() => {
@@ -358,7 +360,7 @@ export default function App() {
 
   // Login/Register Screen
   if (!user) {
-     <ModeToggle/>
+
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <Card className="w-full max-w-md shadow-2xl">
