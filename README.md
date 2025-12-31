@@ -1,177 +1,258 @@
-# Cloud-Based Content Management System (CMS)
 
-A modern, cloud-based Content Management System built with Flask, SQLite/PostgreSQL, and Bootstrap. This system provides a comprehensive solution for managing content, users, categories, and media files.
+# 📌 Complaint Management System (CMS)
 
-## Features
+A **web-based Complaint Management System** developed using **Next.js and MongoDB**.
+The system helps users register complaints online and allows administrators to manage, track, and resolve compl
+aints efficiently.
 
-- **User Authentication & Authorization**: Role-based access control (Admin, Editor, Author)
-- **Content Management**: Create, edit, delete, and publish posts
-- **Category Management**: Organize content with categories
-- **Media Library**: Upload and manage media files
-- **Dashboard**: Real-time statistics and overview
-- **Responsive Design**: Mobile-friendly Bootstrap interface
-- **Cloud-Ready**: Designed for deployment on Heroku, AWS, or similar platforms
+This project is developed as part of the **BCA (Computer Applications) curriculum** and follows standard software engineering practices.
 
-## Technology Stack
+---
 
-- **Backend**: Flask (Python)
-- **Database**: SQLite (Development) / PostgreSQL (Production)
-- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
-- **Authentication**: Flask-Login
-- **ORM**: SQLAlchemy
+## 🎯 Project Objective
 
-## Installation
+The objective of this project is to:
 
-### Prerequisites
+* Digitize the complaint registration process
+* Reduce manual paperwork
+* Improve transparency and response time
+* Provide a centralized system for complaint handling
 
-- Python 3.8 or higher
-- pip (Python package manager)
+---
 
-### Setup Steps
+## ✨ Key Features
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd cms
-   ```
+### User Features
 
-2. **Create a virtual environment**
-   ```bash
-   python -m venv venv
-   ```
+* User Registration & Login
+* Submit complaints
+* Track complaint status
+* View complaint history
 
-3. **Activate virtual environment**
-   - Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - Linux/Mac:
-     ```bash
-     source venv/bin/activate
-     ```
+### Admin Features
 
-4. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+* Admin login
+* View all complaints
+* Update complaint status (Pending / In Progress / Resolved)
+* Manage users
 
-5. **Run the application**
-   ```bash
-   python app.py
-   ```
+---
 
-6. **Access the application**
-   - Open your browser and navigate to: `http://localhost:5000`
-   - Default admin credentials:
-     - Username: `admin`
-     - Password: `admin123`
+## 🛠️ Technology Stack
 
-## Project Structure
+| Layer          | Technology                   |
+| -------------- | ---------------------------- |
+| Frontend       | Next.js (App Router)         |
+| Backend        | Next.js API Routes (Node.js) |
+| Database       | MongoDB (Atlas)              |
+| Styling        | Tailwind CSS / ShadCN UI     |
+| Authentication | JWT-based Authentication     |
+| Deployment     | Vercel / Cloud Ready         |
+
+---
+
+## 🗂️ Project Structure
 
 ```
 cms/
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── templates/            # HTML templates
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── posts.html
-│   ├── post_form.html
-│   ├── categories.html
-│   ├── category_form.html
-│   ├── users.html
-│   ├── media.html
-│   ├── 404.html
-│   └── 500.html
-├── static/               # Static files
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
-│   └── uploads/          # Media uploads directory
-└── cms.db               # SQLite database (created on first run)
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   │   ├── login/route.js
+│   │   │   └── register/route.js
+│   │   ├── complaints/
+│   │   └── users/
+│   ├── layout.js
+│   ├── page.js
+│   └── globals.css
+├── components/
+├── hooks/
+├── lib/
+│   └── mongodb.js
+├── public/
+├── .env.local
+├── package.json
+└── README.md
 ```
 
-## Features Overview
+---
 
-### User Roles
+## ⚙️ Installation & Setup
 
-- **Admin**: Full system access, user management
-- **Editor**: Can edit and publish all posts
-- **Author**: Can create and edit own posts
+### Step 1: Clone the Repository
 
-### Content Management
+```bash
+git clone https://github.com/salonikashyap7899/complaint-management-system
+cd cms
+```
 
-- Create, edit, and delete posts
-- Draft, publish, or archive posts
-- Rich text content support
-- Category assignment
-- Featured images
-- SEO-friendly slugs
+### Step 2: Install Dependencies
 
-### Dashboard
+```bash
+npm install
+```
 
-- Total posts statistics
-- Published vs. draft counts
-- User statistics
-- Recent posts overview
-- Quick actions
+### Step 3: Configure Environment Variables
 
-## Deployment
+Create `.env.local` file:
 
-### Heroku Deployment
+```env
+MONGO_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/cms?retryWrites=true&w=majority
+```
 
-1. Create a `Procfile`:
-   ```
-   web: gunicorn app:app
-   ```
+⚠️ Do NOT upload `.env.local` to GitHub.
 
-2. Update `requirements.txt` to include:
-   ```
-   gunicorn==21.2.0
-   ```
+---
 
-3. Set up Heroku PostgreSQL addon
+### Step 4: Run the Project
 
-4. Update `app.py` to use environment variables for database URI
+```bash
+npm run dev
+```
 
-### AWS Deployment
+Open in browser:
 
-1. Use AWS Elastic Beanstalk or EC2
-2. Set up RDS PostgreSQL instance
-3. Configure environment variables
-4. Set up S3 for media storage (optional)
+```
+http://localhost:3000
+```
 
-## Security Features
+---
 
-- Password hashing with Werkzeug
-- SQL injection prevention (SQLAlchemy ORM)
-- XSS protection (template escaping)
-- CSRF protection (Flask-WTF recommended for production)
-- Role-based access control
-- Secure file uploads
+## 🔐 API Documentation
 
-## Future Enhancements
+### 🔹 Register User
 
-- Mobile application
-- AI/ML-based content suggestions
-- Advanced analytics
-- Multi-language support
-- API endpoints
-- Real-time notifications
-- Advanced media management
-- Content versioning
-- SEO optimization tools
+**POST** `/api/auth/register`
 
-## License
+**Request Body**
 
-This project is developed for educational purposes.
+```json
+{
+  "name": "User Name",
+  "email": "user@gmail.com",
+  "password": "password123"
+}
+```
 
-## Contact
+---
 
-For questions or support, please refer to the project documentation.
-# complaint-management-system
-# complaint-management-system
+### 🔹 Login User
+
+**POST** `/api/auth/login`
+
+**Request Body**
+
+```json
+{
+  "email": "user@gmail.com",
+  "password": "password123"
+}
+```
+
+---
+
+### 🔹 Create Complaint
+
+**POST** `/api/complaints`
+
+**Request Body**
+
+```json
+{
+  "title": "Internet Issue",
+  "description": "Internet not working properly"
+}
+```
+
+---
+
+### 🔹 Get Complaints
+
+**GET** `/api/complaints`
+
+---
+
+## 🖼️ Screenshots
+
+*Add screenshots here before final submission or PDF export*
+
+```
+📸 Login Page
+📸 User Dashboard
+📸 Complaint Form
+📸 Admin Dashboard
+📸 Complaint Status Page
+```
+
+👉 For college PDF:
+Take screenshots → paste them under this section.
+
+---
+
+## 🔒 Security Features
+
+* Encrypted passwords
+* Secure API routes
+* MongoDB Atlas authentication
+* Environment variable protection
+
+---
+
+## 📈 Future Enhancements
+
+* Email notifications
+* Complaint priority system
+* File upload with complaints
+* Role-based dashboard UI
+* Analytics & reports
+
+---
+
+## 🎓 Academic Details
+
+* **Course**: Bachelor of Computer Applications (BCA)
+* **Project Type**: Web Application
+* **Category**: Full Stack Development
+* **Purpose**: Academic Project
+
+---
+
+## 👩‍💻 Author
+
+**Saloni Kashyap**
+BCA – Computer Applications
+Frontend & Full Stack Developer
+
+🔗 GitHub:
+[https://github.com/salonikashyap7899](https://github.com/salonikashyap7899)
+
+---
+
+## 📄 License
+
+This project is developed **for educational purposes only**.
+
+---
+
+## ✅ NEXT STEPS (IMPORTANT)
+
+1️⃣ Replace README.md with this content
+2️⃣ Add screenshots
+3️⃣ Commit & push:
+
+```bash
+git add README.md
+git commit -m "Final project README for college and recruiters"
+git push
+```
+
+---
+
+If you want next:
+
+* 📄 **60–70 page project report**
+* 🧾 **DFD, ER Diagram**
+* 🧠 **Viva questions & answers**
+* 🧑‍💼 **Resume project description**
+
+Just say **“next”** 😊

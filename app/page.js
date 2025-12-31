@@ -149,6 +149,7 @@ export default function App() {
     }
   };
 
+  
   const handleAuth = async (e) => {
     e.preventDefault();
     
@@ -428,7 +429,7 @@ export default function App() {
                 </div>
               )}
               
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-default">
                 {authMode === 'login' ? 'Sign In' : 'Create Account'}
               </Button>
             </form>
@@ -479,7 +480,7 @@ export default function App() {
             className="w-full justify-start"
             onClick={() => setActiveTab('dashboard')}
           >
-            <LayoutDashboard className="mr-2 h-4 w-4" />
+            <LayoutDashboard className="mr-2 h-4 w-4 cursor-default" />
             Dashboard
           </Button>
           
