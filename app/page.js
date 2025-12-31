@@ -36,6 +36,7 @@ import {
   Workflow
 } from 'lucide-react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { ModeToggle } from '@/components/ui/mode-toggle';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
@@ -81,6 +82,7 @@ export default function App() {
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
+      // eslint-disable-next-line react-hooks/immutability
       seedDatabase(storedToken);
     } else {
       setLoading(false);
@@ -356,6 +358,7 @@ export default function App() {
 
   // Login/Register Screen
   if (!user) {
+     <ModeToggle/>
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <Card className="w-full max-w-md shadow-2xl">
