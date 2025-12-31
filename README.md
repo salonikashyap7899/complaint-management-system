@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cloud-Based Content Management System (CMS)
 
-## Getting Started
+A modern, cloud-based Content Management System built with Flask, SQLite/PostgreSQL, and Bootstrap. This system provides a comprehensive solution for managing content, users, categories, and media files.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **User Authentication & Authorization**: Role-based access control (Admin, Editor, Author)
+- **Content Management**: Create, edit, delete, and publish posts
+- **Category Management**: Organize content with categories
+- **Media Library**: Upload and manage media files
+- **Dashboard**: Real-time statistics and overview
+- **Responsive Design**: Mobile-friendly Bootstrap interface
+- **Cloud-Ready**: Designed for deployment on Heroku, AWS, or similar platforms
+
+## Technology Stack
+
+- **Backend**: Flask (Python)
+- **Database**: SQLite (Development) / PostgreSQL (Production)
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
+- **Authentication**: Flask-Login
+- **ORM**: SQLAlchemy
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip (Python package manager)
+
+### Setup Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd cms
+   ```
+
+2. **Create a virtual environment**
+   ```bash
+   python -m venv venv
+   ```
+
+3. **Activate virtual environment**
+   - Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - Linux/Mac:
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Run the application**
+   ```bash
+   python app.py
+   ```
+
+6. **Access the application**
+   - Open your browser and navigate to: `http://localhost:5000`
+   - Default admin credentials:
+     - Username: `admin`
+     - Password: `admin123`
+
+## Project Structure
+
+```
+cms/
+├── app.py                 # Main Flask application
+├── requirements.txt       # Python dependencies
+├── templates/            # HTML templates
+│   ├── base.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── posts.html
+│   ├── post_form.html
+│   ├── categories.html
+│   ├── category_form.html
+│   ├── users.html
+│   ├── media.html
+│   ├── 404.html
+│   └── 500.html
+├── static/               # Static files
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── main.js
+│   └── uploads/          # Media uploads directory
+└── cms.db               # SQLite database (created on first run)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### User Roles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Admin**: Full system access, user management
+- **Editor**: Can edit and publish all posts
+- **Author**: Can create and edit own posts
 
-## Learn More
+### Content Management
 
-To learn more about Next.js, take a look at the following resources:
+- Create, edit, and delete posts
+- Draft, publish, or archive posts
+- Rich text content support
+- Category assignment
+- Featured images
+- SEO-friendly slugs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Total posts statistics
+- Published vs. draft counts
+- User statistics
+- Recent posts overview
+- Quick actions
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Heroku Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a `Procfile`:
+   ```
+   web: gunicorn app:app
+   ```
+
+2. Update `requirements.txt` to include:
+   ```
+   gunicorn==21.2.0
+   ```
+
+3. Set up Heroku PostgreSQL addon
+
+4. Update `app.py` to use environment variables for database URI
+
+### AWS Deployment
+
+1. Use AWS Elastic Beanstalk or EC2
+2. Set up RDS PostgreSQL instance
+3. Configure environment variables
+4. Set up S3 for media storage (optional)
+
+## Security Features
+
+- Password hashing with Werkzeug
+- SQL injection prevention (SQLAlchemy ORM)
+- XSS protection (template escaping)
+- CSRF protection (Flask-WTF recommended for production)
+- Role-based access control
+- Secure file uploads
+
+## Future Enhancements
+
+- Mobile application
+- AI/ML-based content suggestions
+- Advanced analytics
+- Multi-language support
+- API endpoints
+- Real-time notifications
+- Advanced media management
+- Content versioning
+- SEO optimization tools
+
+## License
+
+This project is developed for educational purposes.
+
+## Contact
+
+For questions or support, please refer to the project documentation.
+# complaint-management-system
