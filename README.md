@@ -245,14 +245,3 @@ git add README.md
 git commit -m "Final project README for college and recruiters"
 git push
 ```
-
----
-
-If you want next:
-
-* 📄 **60–70 page project report**
-* 🧾 **DFD, ER Diagram**
-* 🧠 **Viva questions & answers**
-* 🧑‍💼 **Resume project description**
-
-Just say **“next”** 😊
