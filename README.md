@@ -106,8 +106,15 @@ MONGO_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/cms?retryWrit
 
 ### Step 4: Run the Project
 
+**Development Mode:**
 ```bash
 npm run dev
+```
+
+**Build for Production:**
+```bash
+npm run build
+npm start
 ```
 
 Open in browser:
@@ -115,6 +122,8 @@ Open in browser:
 ```
 http://localhost:3000
 ```
+
+**Note:** Make sure `MONGO_URL` is set in your `.env.local` file before running the application.
 
 ---
 

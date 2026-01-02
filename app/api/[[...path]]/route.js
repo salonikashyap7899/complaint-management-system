@@ -8,6 +8,9 @@ let db;
 
 async function connectDB() {
   if (db) return db;
+  if (!uri) {
+    throw new Error('MONGO_URL environment variable is not set. Please set it in your .env.local file.');
+  }
   try {
     client = new MongoClient(uri);
     await client.connect();

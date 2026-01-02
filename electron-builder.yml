@@ -1,0 +1,34 @@
+appId: com.cms.complaint-management
+productName: Complaint Management System
+directories:
+  buildResources: build
+  output: dist
+files:
+  - '.next/**/*'
+  - 'public/**/*'
+  - 'package.json'
+  - 'package-lock.json'
+  - 'node_modules/**/*'
+  - 'electron/**/*'
+  - 'next.config.ts'
+  - 'tsconfig.json'
+  - 'postcss.config.mjs'
+  - 'components/**/*'
+  - 'lib/**/*'
+  - 'hooks/**/*'
+  - 'app/**/*'
+  - '!node_modules/.cache/**/*'
+  - '!node_modules/**/*.{md,ts,map}'
+  - '!**/*.{md,ts,map}'
+  - '!.next/cache/**/*'
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  deleteAppDataOnUninstall: true
