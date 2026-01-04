@@ -860,22 +860,52 @@ export default function App() {
 
                           {/* Quick Actions */}
                           <div className="border-t pt-4">
+                            {(user.role === 'admin' || user.role === 'hod') && (complaint.status === 'pending' || complaint.status === 'assigned') && (
+    <div className="mb-4">
+      <Button 
+        variant="outline" 
+        className="text-green-600 border-green-600 hover:bg-green-50"
+        onClick={() => {
+          const note = prompt('Please enter resolution details:');
+          if (note) handleResolveComplaint(complaint.id, note);
+        }}
+      >
+        <CheckCircle className="mr-2 h-4 w-4" /> Direct Resolve (Admin)
+      </Button>
+      <p className="text-xs text-gray-500 mt-1">Resolve this complaint immediately without assigning or starting work.</p>
+    </div>
+  )}
                             {/* HOD Actions - Assign to Staff */}
-                            {(user.role === 'hod' || user.role === 'admin') && complaint.status === 'pending' && (
-                              <div className="flex items-center space-x-2">
-                                <Label className="text-sm font-medium">Assign to Staff:</Label>
-                                <Select onValueChange={(staffId) => handleAssignComplaint(complaint.id, staffId)}>
-                                  <SelectTrigger className="w-64">
-                                    <SelectValue placeholder="Select staff member" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {users.filter(u => u.role === 'staff' && u.departmentId === complaint.departmentId).map(staff => (
-                                      <SelectItem key={staff.id} value={staff.id}>{staff.name}</SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                            )}
+                           {/* HOD Actions - Assign to Staff */}
+{/* HOD Actions - Assign to Staff */}
+{(user.role === 'hod' || user.role === 'admin') && complaint.status === 'pending' && (
+  <div className="flex items-center space-x-2">
+    <Label className="text-sm font-medium">Assign to Staff:</Label>
+    <Select 
+      onValueChange={(staffId) => {
+        console.log("Assigning to staff:", staffId); // Debug log
+        handleAssignComplaint(complaint.id, staffId);
+      }}
+    >
+      <SelectTrigger className="w-64">
+        <SelectValue placeholder="Select staff member" />
+      </SelectTrigger>
+      <SelectContent>
+        {users
+          .filter(u => 
+            u.role === 'staff' && 
+            u.departmentId?.toString() === complaint.departmentId?.toString()
+          )
+          .map(staff => (
+            <SelectItem key={staff.id} value={staff.id.toString()}>
+              {staff.name}
+            </SelectItem>
+          ))
+        }
+      </SelectContent>
+    </Select>
+  </div>
+)}
 
                             {/* Staff Actions - Start Work */}
                             {(user.role === 'staff' || user.role === 'hod' || user.role === 'admin') && complaint.status === 'assigned' && (

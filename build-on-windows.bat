@@ -9,7 +9,7 @@ echo ============================================
 echo   Complaint Management System - Build Tool
 echo   Windows .exe File Builder
 echo ============================================
-echo.
+
 
 REM Check if Node.js is installed
 where node >nul 2>nul

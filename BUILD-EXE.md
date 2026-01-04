@@ -18,7 +18,6 @@ To create a Windows .exe file, you need to build it on a Windows machine:
    ```bash
    npm install
    ```
-
 5. **Build the Next.js application:**
    ```bash
    npm run build
