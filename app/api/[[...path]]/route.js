@@ -705,3 +705,5 @@ export async function PUT(request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+// Force redeploy to fix Vercel 404 and ensure all fixes are active
