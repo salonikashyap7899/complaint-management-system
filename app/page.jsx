@@ -206,13 +206,15 @@ export default function App() {
         setUser(data.user);
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        await seedDatabase(data.token);
+        seedDatabase(data.token).catch((err) =>
+          console.error("Seed error after login:", err)
+        );
       } else {
         alert(data.error || "Authentication failed");
       }
     } catch (error) {
       console.error("Auth error:", error);
-      alert("Authentication failed");
+      alert("Authentication failed. Please check your connection and try again.");
     }
   };
 
