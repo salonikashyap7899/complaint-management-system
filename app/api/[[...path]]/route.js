@@ -60,11 +60,11 @@ function createAuthToken(user) {
 }
 
 export async function POST(request) {
-  const db = await connectDB();
   const url = new URL(request.url);
   const path = url.pathname.replace('/api/', '');
 
   try {
+    const db = await connectDB();
     // Auth Routes
     if (path === 'auth/register') {
       const body = await request.json();
@@ -468,11 +468,11 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-  const db = await connectDB();
   const url = new URL(request.url);
   const path = url.pathname.replace('/api/', '');
 
   try {
+    const db = await connectDB();
     // Public route for health check
     if (path === 'health') {
       return NextResponse.json({ status: 'ok' });
@@ -652,11 +652,11 @@ export async function GET(request) {
 }
 
 export async function PUT(request) {
-  const db = await connectDB();
   const url = new URL(request.url);
   const path = url.pathname.replace('/api/', '');
 
   try {
+    const db = await connectDB();
     const user = verifyAuth(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
