@@ -12,14 +12,24 @@ async function connectDB() {
     throw new Error('MONGO_URL environment variable is not set. Please set it in your .env.local file.');
   }
   try {
-    client = new MongoClient(uri);
+    if (!client) {
+      client = new MongoClient(uri, {
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      });
+    }
     await client.connect();
     db = client.db('complaint_management');
     console.log('Connected to MongoDB');
     return db;
   } catch (error) {
-    console.error('MongoDB connection error:', error);
-    throw error;
+    console.error('MongoDB connection error details:', {
+      message: error.message,
+      code: error.code,
+      name: error.name
+    });
+    throw new Error(`Database connection failed: ${error.message}`);
   }
 }
 

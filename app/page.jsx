@@ -210,6 +210,7 @@ export default function App() {
           console.error("Seed error after login:", err)
         );
       } else {
+        // Show the specific error message from the server (e.g., Database connection failed)
         alert(data.error || "Authentication failed");
       }
     } catch (error) {
