@@ -15,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
     "paths": {
@@ -33,8 +33,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js",    // Add this
-    "**/*.jsx",   // Add this
+    "**/*.js", // Add this
+    "**/*.jsx", // Add this
     "next.config.mjs",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
